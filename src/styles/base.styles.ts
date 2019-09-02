@@ -32,7 +32,14 @@ export default (theme: Theme) => ({
     body: {
       margin: 0,
       padding: 0,
-      minHeight: '100vh'
+      display: 'flex',
+      minHeight: '100vh',
+      backgroundColor: theme.palette.secondary.main
+    },
+    '#root': {
+      maxWidth: '1200px',
+      width: '100%',
+      margin: '0 auto',
     }
   }
 });

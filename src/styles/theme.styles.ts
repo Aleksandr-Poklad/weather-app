@@ -1,4 +1,4 @@
-import { black, blue, green, pink, red } from './colors.styles';
+import { blue, green, pink, red, dark, white } from './colors.styles';
 import { baseFontFamily, fontSizeBase } from './variables.styles';
 
 export interface PaletteColor {
@@ -14,7 +14,6 @@ export interface Palette {
   secondary: PaletteColor;
   error: PaletteColor;
   accent: PaletteColor;
-  test: string;
 }
 
 export interface Theme {
@@ -23,26 +22,17 @@ export interface Theme {
     fontFamily: string;
     fontSize: string;
   };
-  header: {
-    background: PaletteColor,
-    height: number
-  }
 }
 
 export const theme: Theme = {
   palette: {
-    primary: green,
-    secondary: pink,
+    primary: white,
+    secondary: dark,
     error: red,
-    accent: blue,
-    test: 'aqua'
+    accent: blue
   },
   typo: {
     fontFamily: baseFontFamily.join(','),
     fontSize: fontSizeBase
-  },
-  header: {
-    background: black,
-    height: 60
   }
 };

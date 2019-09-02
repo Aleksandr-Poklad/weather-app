@@ -32,10 +32,18 @@ export const blue: PaletteColor = {
   contrastText: '#111111',
 };
 
-export const black: PaletteColor = {
-  light: '#171717',
-  main: '#0a0a0a',
-  dark: '#000',
+export const dark: PaletteColor = {
+  light: '#121212bf',
+  main: '#121212',
+  dark: '#000000',
   text: '#ffffff',
-  contrastText: '#FFF',
+  contrastText: '#111111',
+};
+
+export const white: PaletteColor = {
+  light: '#121212bf',
+  main: '#ffffff',
+  dark: '#000000',
+  text: '#000000',
+  contrastText: '#111111',
 };
