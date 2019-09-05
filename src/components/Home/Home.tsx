@@ -3,49 +3,41 @@ import * as React from 'react';
 import withStyles, { WithStyles } from 'react-jss';
 import styles from './Home.styles';
 import {ApiRequest} from "../../apis/ApiRequest";
-import {RootObject} from "../../models";
-import {City} from "../City";
+import {Forecast} from "../../models";
+import {CityItem} from "../CityItem";
 import uuid from 'uuid/v4';
 
-const idCity = 'Kiev';
+const idCity = '703448';
 
 interface State {
-    forecast?: Array<RootObject>;
+    city: Array<Forecast>;
 }
 
 class Home extends React.PureComponent<WithStyles<typeof styles>, State> {
 
     state = {
-        forecast: [],
+        city: null,
     };
     public componentWillMount = async () => {
         try {
-            const forecast = await ApiRequest.get(`weather?q=${idCity},ua`);
-            this.setWeather(forecast);
-            console.log(this.state.forecast);
+            const city = await ApiRequest.get(`forecast?id=${idCity}`);
+            this.setState({ city: city });
         } catch (e) {
             throw e;
         }
     };
 
     public render() {
+        const weatherData = this.state.city;
+        if (!weatherData) return <div>Loading</div>;
+        console.log(weatherData);
         const { classes } = this.props;
         return (
             <div className={classes.root}>
-                {
-                    this.state.forecast.map((item) => {
-                        return <City key={ uuid() } data={ item }/>
-                    })
-                }
+                <CityItem key={ uuid() } data={ this.state.city }/>
             </div>
         );
     }
-
-    private setWeather = (forecast: Array<RootObject>) => {
-
-        this.setState((state) => ({ ...state, forecast: forecast }));
-
-    };
 
 }
 

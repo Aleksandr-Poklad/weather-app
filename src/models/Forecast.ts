@@ -1,6 +1,12 @@
-export interface Coord {
-    lon: number;
-    lat: number;
+export interface Main {
+    temp: number;
+    temp_min: number;
+    temp_max: number;
+    pressure: number;
+    sea_level: number;
+    grnd_level: number;
+    humidity: number;
+    temp_kf: number;
 }
 
 export interface Weather {
@@ -10,12 +16,8 @@ export interface Weather {
     icon: string;
 }
 
-export interface Main {
-    temp: number;
-    pressure: number;
-    humidity: number;
-    temp_min: number;
-    temp_max: number;
+export interface Clouds {
+    all: number;
 }
 
 export interface Wind {
@@ -23,31 +25,39 @@ export interface Wind {
     deg: number;
 }
 
-export interface Clouds {
-    all: number;
+export interface Sys {
+    pod: string;
 }
 
-export interface Sys {
-    type: number;
+export interface List {
+    dt: number;
+    main: Main;
+    weather: Weather[];
+    clouds: Clouds;
+    wind: Wind;
+    sys: Sys;
+    dt_txt: string;
+}
+
+export interface Coord {
+    lat: number;
+    lon: number;
+}
+
+export interface City {
     id: number;
-    message: number;
+    name: string;
+    coord: Coord;
     country: string;
+    timezone: number;
     sunrise: number;
     sunset: number;
 }
 
-export interface RootObject {
-    coord: Coord;
-    weather: Weather[];
-    base: string;
-    main: Main;
-    visibility: number;
-    wind: Wind;
-    clouds: Clouds;
-    dt: number;
-    sys: Sys;
-    timezone: number;
-    id: number;
-    name: string;
-    cod: number;
+export interface Forecast {
+    cod: string;
+    message: number;
+    cnt: number;
+    list: List[];
+    city: City;
 }
