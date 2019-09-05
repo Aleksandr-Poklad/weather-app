@@ -13,8 +13,5 @@ export class ApiRequest {
         } catch (e) {
             throw e;
         }
-
     }
-
-
 }

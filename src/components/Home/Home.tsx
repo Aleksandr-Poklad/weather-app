@@ -2,39 +2,18 @@ import * as React from 'react';
 
 import withStyles, { WithStyles } from 'react-jss';
 import styles from './Home.styles';
-import {ApiRequest} from "../../apis/ApiRequest";
-import {Forecast} from "../../models";
-import {CityItem} from "../CityItem";
-import uuid from 'uuid/v4';
+import {City} from "../City";
 
-const idCity = '703448';
 
-interface State {
-    city: Array<Forecast>;
-}
+// const idCity = '703448';
 
-class Home extends React.PureComponent<WithStyles<typeof styles>, State> {
-
-    state = {
-        city: null,
-    };
-    public componentWillMount = async () => {
-        try {
-            const city = await ApiRequest.get(`forecast?id=${idCity}`);
-            this.setState({ city: city });
-        } catch (e) {
-            throw e;
-        }
-    };
+class Home extends React.PureComponent<WithStyles<typeof styles>> {
 
     public render() {
-        const weatherData = this.state.city;
-        if (!weatherData) return <div>Loading</div>;
-        console.log(weatherData);
         const { classes } = this.props;
         return (
             <div className={classes.root}>
-                <CityItem key={ uuid() } data={ this.state.city }/>
+                <City />
             </div>
         );
     }
