@@ -9,7 +9,6 @@ interface Props {
 }
 
 const CityItem: React.FC<Props & WithStyles<typeof styles>> = ({classes, data}) => {
-    console.log(data);
     return <div className={classes.root}>
             <h2>{data.city.name}</h2>
             <p>{data.list[0].main.temp}</p>
