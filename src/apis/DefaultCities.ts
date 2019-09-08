@@ -1,4 +1,4 @@
-export const defaultFavoriteCities = [
+export const defaultCities = [
     {
         'id': 703448,
         'name': 'Kyiv',
@@ -8,14 +8,34 @@ export const defaultFavoriteCities = [
         'name': 'Kharkiv',
     },
     {
-        'id': 293397,
-        'name': 'Tel Aviv',
+        "id": 4915545,
+        "name": "Washington",
     },
     {
         'id': 2950159,
         'name': 'Berlin',
     },
     {
-        'id': 3435910,
-        'name': 'Buenos Aires',
+        "id": 2147714,
+        "name": "Sydney",
+    },
+    {
+        'id': 5128638,
+        'name': 'New York',
+    },
+    {
+        "id": 1850147,
+        "name": "Tokyo",
+    },
+    {
+        "id": 1819729,
+        "name": "Hong Kong",
+    },
+    {
+        "id": 658225,
+        "name": "Helsinki",
+    },
+    {
+        "id": 1151254,
+        "name": "Phuket",
     }];

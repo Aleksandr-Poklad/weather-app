@@ -1,6 +1,31 @@
-export default {
-    root: {
-        display: 'flex',
-        flexDirection: 'column'
-    }
-}
+import { base, Theme } from '../../styles';
+
+export default (theme: Theme) => {
+    return {
+        ...base(theme),
+        root: {
+            flexBasis: 'calc(33% - 30px)',
+            backgroundColor: theme.palette.primary.main,
+            margin: '0 15px 30px 15px',
+            padding: 20,
+            borderRadius: 10
+        },
+        title: {
+            display: 'flex',
+            alignItems: 'center'
+        },
+        titleSpan: {
+            paddingLeft: 10
+        },
+        iconWr: {
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-start'
+        },
+        descrWr: {
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between'
+        }
+    };
+};
