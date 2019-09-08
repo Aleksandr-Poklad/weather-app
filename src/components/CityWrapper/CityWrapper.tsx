@@ -23,14 +23,6 @@ class CityWrapper extends React.PureComponent<WithStyles<typeof styles>, State> 
         defaultCities: []
     };
 
-    public componentDidMount = async () => {
-
-    };
-
-    public componentDidUpdate = async () => {
-
-    };
-
     public componentWillMount = async () => {
         try {
             const forecast = defaultCities.map(async (item) => {
@@ -43,6 +35,13 @@ class CityWrapper extends React.PureComponent<WithStyles<typeof styles>, State> 
                 });
             });
 
+            // const forecastItem = await ApiRequest.get(`group?id=${defaultCities[0].id},${defaultCities[1].id},${defaultCities[2].id}`);
+            // this.setState(({defaultCities}) => {
+            //     return {
+            //         defaultCities: forecastItem
+            //     }
+            // });
+
         } catch (e) {
             throw e;
         }
@@ -54,7 +53,6 @@ class CityWrapper extends React.PureComponent<WithStyles<typeof styles>, State> 
         const { classes } = this.props;
         return (
             <div className={classes.root}>
-                {/*<CityItem key={ uuid() } data={ this.state.forecast }/>*/}
                 {weatherData.map((item) => {
                     return <CityItem key={ uuid() } data={ item }/>
                 })}
