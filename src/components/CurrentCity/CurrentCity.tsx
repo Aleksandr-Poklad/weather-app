@@ -27,10 +27,6 @@ class CurrentCity extends React.PureComponent<WithStyles<typeof styles>, State> 
                 maximumAge: 60000
             };
             const success = async (pos) => {
-                // this.setState( {
-                //     lat: pos.coords.latitude,
-                //     lon: pos.coords.longitude
-                // });
                 console.log(pos.coords.latitude);
                 console.log(pos.coords.longitude);
 

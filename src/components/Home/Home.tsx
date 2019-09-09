@@ -4,6 +4,7 @@ import withStyles, { WithStyles } from 'react-jss';
 import styles from './Home.styles';
 import {CityWrapper} from "../CityWrapper";
 import {CurrentCity} from "../CurrentCity";
+import {connect} from "react-redux";
 
 
 class Home extends React.PureComponent<WithStyles<typeof styles>> {
@@ -16,6 +17,7 @@ class Home extends React.PureComponent<WithStyles<typeof styles>> {
         const { classes } = this.props;
         return (
             <div className={classes.root}>
+
                 <CurrentCity />
                 <CityWrapper />
             </div>
@@ -24,6 +26,6 @@ class Home extends React.PureComponent<WithStyles<typeof styles>> {
 
 }
 
-const WrappedHome = withStyles(styles)(Home);
+const WrappedHome = withStyles(styles)(connect()(Home));
 
 export {WrappedHome as Home};
