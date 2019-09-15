@@ -1,7 +1,9 @@
 import * as React from "react";
 import withStyles, { WithStyles } from 'react-jss';
+import { Switch, Route } from 'react-router';
+import routes, { AppRoute } from './App.routes';
+import { v4 as uuid } from 'uuid';
 import styles from './App.styles';
-import {Home} from '../Home';
 
 class App extends React.PureComponent<WithStyles<typeof styles>> {
 
@@ -9,7 +11,11 @@ class App extends React.PureComponent<WithStyles<typeof styles>> {
         const { classes } = this.props;
         return (
                 <div className={classes.root}>
-                    <Home />
+                    <Switch>
+                        {
+                            routes.map((route: AppRoute) => <Route key={ uuid() } { ...route }/>)
+                        }
+                    </Switch>
                 </div>
         );
     }

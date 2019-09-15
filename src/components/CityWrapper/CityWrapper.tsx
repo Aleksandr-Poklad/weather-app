@@ -35,13 +35,6 @@ class CityWrapper extends React.PureComponent<WithStyles<typeof styles>, State> 
                 });
             });
 
-            // const forecastItem = await ApiRequest.get(`group?id=${defaultCities[0].id},${defaultCities[1].id},${defaultCities[2].id}`);
-            // this.setState(({defaultCities}) => {
-            //     return {
-            //         defaultCities: forecastItem
-            //     }
-            // });
-
         } catch (e) {
             throw e;
         }

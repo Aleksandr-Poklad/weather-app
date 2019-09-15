@@ -1,20 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {App} from './components/App';
+import { ConnectedRouter } from 'connected-react-router';
+import { createBrowserHistory } from 'history';
 import { ThemeProvider } from 'react-jss';
 import { theme } from './styles';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import {reducer} from "./store/reducer";
+import  createStore from './store';
 
-const store = createStore(reducer);
+// const store = createStore();
+export const history = createBrowserHistory();
+const store = createStore(history);
 
 ReactDOM.render(
-        <Provider store={store}>
-            <ThemeProvider theme={theme}>
-                <App/>
-            </ThemeProvider>
-        </Provider>,
+
+        <ThemeProvider theme={theme}>
+            <Provider store={store}>
+                <ConnectedRouter history={ history }>
+                    <App/>
+                </ConnectedRouter>
+            </Provider>
+        </ThemeProvider>
+        ,
         document.getElementById('root')
 );
 

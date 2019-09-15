@@ -4,19 +4,7 @@ export default (theme: Theme) => {
     return {
         ...base(theme),
         root: {
-        },
-        name: {
-
-        },
-        weather: {
-
-        },
-        temp: {
-
-        },
-        counter: {
             color: 'white'
         }
-
     };
 };
