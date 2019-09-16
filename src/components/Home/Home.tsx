@@ -12,22 +12,30 @@ import { Header } from '../Header';
 
 class Home extends React.PureComponent<DispatchProps & StateProps & RouteComponentProps & WithStyles<typeof styles>> {
 
+    // state = {
+    //     loading: true
+    // };
+
     public componentDidMount(): void {
         this.props.onFetchList();
     }
 
     public render() {
         
-        const { classes } = this.props;
-        const weatherData = this.props.weather;
-        if (!weatherData) return <div>Loading</div>;
+        const {weather, classes } = this.props;
+        // if (weather.length === 0) {
+        //     return <div>Loading</div>;
+        // }
+        console.log(!weather);
         return (
-            <div className={classes.root}>
-                {/*<Header />*/}
-                {/*<CurrentCity />*/}
-                <Grid weather={ weatherData }/>
-            </div>
+                <div className={classes.root}>
+                    {/*<Header />*/}
+                    {/*<CurrentCity />*/}
+                    <Grid weather={ weather }/>
+                </div>
         );
+
+
     }
 
 }

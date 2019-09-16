@@ -32,7 +32,7 @@ export interface Sys {
 export interface List {
     dt: number;
     main: Main;
-    weather: Weather[];
+    weather: Weather;
     clouds: Clouds;
     wind: Wind;
     sys: Sys;
@@ -58,6 +58,6 @@ export interface Forecast {
     cod: string;
     message: number;
     cnt: number;
-    list: List[];
+    list: List;
     city: City;
 }

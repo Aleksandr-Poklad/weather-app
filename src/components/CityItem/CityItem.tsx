@@ -7,16 +7,13 @@ import { Forecast } from '../../models';
 const iconUrl = process.env.REACT_APP_API_ICON_URL;
 
 interface Props {
-    data: Forecast;
+    weather: Forecast;
 }
 
-const CityItem: React.FC<Props & WithStyles<typeof styles>> = ({classes, data}) => {
+const CityItem: React.FC<Props & WithStyles<typeof styles>> = ({classes, weather}) => {
 
     return <div className={classes.root}>
 
-        {
-            console.log(data)
-        }
         {/*<h2 className={classes.title}>*/}
         {/*    {data.city.name}*/}
         {/*    <span className={classes.titleSpan}>({data.city.country})</span>*/}

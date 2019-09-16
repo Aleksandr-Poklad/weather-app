@@ -4,7 +4,6 @@ import withStyles, { WithStyles } from 'react-jss';
 import styles from './CurrentCity.styles';
 import {ApiRequest} from "../../apis/ApiRequest";
 import {Forecast} from "../../models";
-import {log} from "util";
 
 const iconUrl = process.env.REACT_APP_API_ICON_URL;
 interface State {
@@ -31,9 +30,9 @@ class CurrentCity extends React.PureComponent<WithStyles<typeof styles>, State> 
                 console.log(pos.coords.longitude);
 
                 const forecastCurrent = await ApiRequest.get(`weather?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}`);
-                this.setState({
-                    forecast: forecastCurrent
-                    });
+                // this.setState({
+                //     forecast: forecastCurrent
+                //     });
             };
             const error = (err) => {
                 console.log(`ERROR(${err.code}): ${err.message}`);

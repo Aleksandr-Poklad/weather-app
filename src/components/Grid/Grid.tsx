@@ -55,22 +55,25 @@ import uuid from 'uuid/v4';
 // }
 
 interface Props {
-    weather: any;
+    weather: Array<Forecast>;
 }
 
 class Grid extends React.PureComponent<Props & WithStyles<typeof styles>> {
 
     public render() {
-        const {classes} = this.props;
-        const weatherData = this.props.weather;
-        if (!weatherData) return <div>Loading</div>;
+        const {weather, classes} = this.props;
+        if (!weather) return <div>Loading</div>;
+        
+        console.log(weather);
 
         return (
             <div className={classes.root}>
                 
-                {weatherData.map((item) => {
-                    return <CityItem key={ uuid() } data={ item }/>
-                })}
+                {
+                    weather.map((item) => {
+                        return <CityItem key={ uuid() } weather={ item }/>
+                    })
+                }
 
             </div>
         );
