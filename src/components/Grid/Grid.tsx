@@ -1,22 +1,19 @@
 import * as React from 'react';
 
 import withStyles, { WithStyles } from 'react-jss';
-import styles from './CityWrapper.styles';
+import styles from './Grid.styles';
 import {ApiRequest} from "../../apis/ApiRequest";
 import {Forecast} from "../../models";
 import {CityItem} from "../CityItem";
 import {defaultCities} from '../../apis/DefaultCities';
 import uuid from 'uuid/v4';
 
-const idCity = '703448';
-
-
 interface State {
     forecast: Array<Forecast>;
     defaultCities: any
 }
 
-class CityWrapper extends React.PureComponent<WithStyles<typeof styles>, State> {
+class Grid extends React.PureComponent<WithStyles<typeof styles>, State> {
 
     state = {
         forecast: null,
@@ -56,6 +53,6 @@ class CityWrapper extends React.PureComponent<WithStyles<typeof styles>, State> 
 
 }
 
-const WrappedCity = withStyles(styles)(CityWrapper);
+const WrappedCity = withStyles(styles)(Grid);
 
-export {WrappedCity as CityWrapper};
+export {WrappedCity as Grid};
