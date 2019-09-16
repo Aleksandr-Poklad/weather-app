@@ -6,28 +6,23 @@ import {defaultCities} from '../../../apis/DefaultCities';
 import { Forecast } from '../../../models';
 import { setList } from '../actions';
 import { subscribe } from '../../../utils/redux';
-import {log} from "util";
-
-const convertObjectForecastToArray = dailyForecastObj => {
-	const dailyForecastArr = [];
-	for (const date in dailyForecastObj) {
-		dailyForecastArr.push({...dailyForecastObj[date], date })
-	}
-	return dailyForecastArr;
-};
 
 const fetchWorker = async (action: Action<undefined>, next, dispatch, getState) => {
+
 	try {
 		const state = getState();
-
 		// const response = await ApiRequest.get(`forecast?id=${defaultCities[0].id}`);
-		
-		const response = defaultCities.map(async (item) => {
+
+		let newArr = [];
+		defaultCities.map(async (item) => {
 			const forecastItem = await ApiRequest.get(`forecast?id=${item.id}`);
-			let newArr = [...state.weather.list, forecastItem];
-			return newArr;
+			return newArr.push(forecastItem);
 		});
-		dispatch(setList(response));
+
+		// const response = state.weather.list.push(newArr);
+		state.weather.list = newArr;
+		// const response = state.weather.list.concat(newArr);
+		dispatch(setList(newArr));
 	} catch (e) {
 		throw e;
 	}

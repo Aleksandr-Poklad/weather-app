@@ -4,7 +4,7 @@ export interface HomeProps {
 }
 
 export interface StateProps {
-    weather: Array<Forecast>;
+    weather: any[];
 }
 
 export interface DispatchProps {

@@ -8,41 +8,66 @@ import {CityItem} from "../CityItem";
 import {defaultCities} from '../../apis/DefaultCities';
 import uuid from 'uuid/v4';
 
-interface State {
-    forecast: Array<Forecast>;
-    defaultCities: any
+// interface State {
+//     forecast: Array<Forecast>;
+//     defaultCities: any
+// }
+
+
+// class Grid extends React.PureComponent<WithStyles<typeof styles>, State> {
+//
+//     state = {
+//         forecast: null,
+//         defaultCities: []
+//     };
+//
+//     public componentWillMount = async () => {
+//         try {
+//             const forecast = defaultCities.map(async (item) => {
+//                 const forecastItem = await ApiRequest.get(`forecast?id=${item.id}`);
+//                 this.setState(({defaultCities}) => {
+//                     const newArr = [...defaultCities, forecastItem];
+//                     return {
+//                         defaultCities: newArr
+//                     }
+//                 });
+//             });
+//
+//         } catch (e) {
+//             throw e;
+//         }
+//     };
+//
+//     public render() {
+//         const weatherData = this.state.defaultCities;
+//         if (!weatherData) return <div>Loading</div>;
+//         const { classes } = this.props;
+//         return (
+//             <div className={classes.root}>
+//                 {weatherData.map((item) => {
+//                     return <CityItem key={ uuid() } data={ item }/>
+//                 })}
+//
+//             </div>
+//         );
+//     }
+//
+// }
+
+interface Props {
+    weather: any;
 }
 
-class Grid extends React.PureComponent<WithStyles<typeof styles>, State> {
-
-    state = {
-        forecast: null,
-        defaultCities: []
-    };
-
-    public componentWillMount = async () => {
-        try {
-            const forecast = defaultCities.map(async (item) => {
-                const forecastItem = await ApiRequest.get(`forecast?id=${item.id}`);
-                this.setState(({defaultCities}) => {
-                    const newArr = [...defaultCities, forecastItem];
-                    return {
-                        defaultCities: newArr
-                    }
-                });
-            });
-
-        } catch (e) {
-            throw e;
-        }
-    };
+class Grid extends React.PureComponent<Props & WithStyles<typeof styles>> {
 
     public render() {
-        const weatherData = this.state.defaultCities;
+        const {classes} = this.props;
+        const weatherData = this.props.weather;
         if (!weatherData) return <div>Loading</div>;
-        const { classes } = this.props;
+
         return (
             <div className={classes.root}>
+                
                 {weatherData.map((item) => {
                     return <CityItem key={ uuid() } data={ item }/>
                 })}
@@ -52,6 +77,10 @@ class Grid extends React.PureComponent<WithStyles<typeof styles>, State> {
     }
 
 }
+
+
+
+
 
 const WrappedCity = withStyles(styles)(Grid);
 

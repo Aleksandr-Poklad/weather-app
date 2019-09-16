@@ -17,12 +17,15 @@ class Home extends React.PureComponent<DispatchProps & StateProps & RouteCompone
     }
 
     public render() {
+        
         const { classes } = this.props;
+        const weatherData = this.props.weather;
+        if (!weatherData) return <div>Loading</div>;
         return (
             <div className={classes.root}>
                 {/*<Header />*/}
                 {/*<CurrentCity />*/}
-                <Grid />
+                <Grid weather={ weatherData }/>
             </div>
         );
     }
