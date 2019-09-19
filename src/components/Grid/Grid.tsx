@@ -3,7 +3,7 @@ import * as React from 'react';
 import withStyles, { WithStyles } from 'react-jss';
 import styles from './Grid.styles';
 import {ApiRequest} from "../../apis/ApiRequest";
-import {Forecast} from "../../models";
+import {Forecast, FavoriteWeatherTypes} from "../../models";
 import {CityItem} from "../CityItem";
 import {defaultCities} from '../../apis/DefaultCities';
 import uuid from 'uuid/v4';
@@ -55,23 +55,26 @@ import uuid from 'uuid/v4';
 // }
 
 interface Props {
-    weather: Array<Forecast>;
+    data: Array<Forecast>;
 }
 
 class Grid extends React.PureComponent<Props & WithStyles<typeof styles>> {
 
     public render() {
-        const {weather, classes} = this.props;
-        if (!weather) return <div>Loading</div>;
+        const {data, classes} = this.props;
+        if (!data) return <div>Loading</div>;
         
-        console.log(weather);
+        // console.log(data);
 
         return (
             <div className={classes.root}>
+
+                {/*<CityItem key={ uuid() } weather={ data }/>*/}
                 
                 {
-                    weather.map((item) => {
-                        return <CityItem key={ uuid() } weather={ item }/>
+                    data.map((item) => {
+                        console.log(item);
+                        return <CityItem key={ uuid() } data={ item }/>
                     })
                 }
 

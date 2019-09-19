@@ -11,13 +11,16 @@ const fetchWorker = async (action: Action<undefined>, next, dispatch, getState) 
 
 	try {
 		const state = getState();
-		// const response = await ApiRequest.get(`forecast?id=${defaultCities[0].id}`);
 
 		let newArr = [];
-		defaultCities.map(async (item) => {
-			const forecastItem = await ApiRequest.get<Array<Forecast>>(`forecast?id=${item.id}`);
-			return newArr.push(forecastItem);
-		});
+
+		const forecastItem = await ApiRequest.get<Array<Forecast>>(`forecast?id=${defaultCities[0].id}`);
+		newArr.push(forecastItem);
+
+		// defaultCities.map(async (item) => {
+		// 	const forecastItem = await ApiRequest.get<Array<Forecast>>(`forecast?id=${item.id}`);
+		// 	return newArr.push(forecastItem);
+		// });
 		dispatch(setList(newArr));
 
 	} catch (e) {

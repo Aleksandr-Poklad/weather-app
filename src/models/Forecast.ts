@@ -1,63 +1,58 @@
-export interface Main {
-    temp: number;
-    temp_min: number;
-    temp_max: number;
-    pressure: number;
-    sea_level: number;
-    grnd_level: number;
-    humidity: number;
-    temp_kf: number;
-}
-
-export interface Weather {
-    id: number;
-    main: string;
-    description: string;
-    icon: string;
-}
-
-export interface Clouds {
-    all: number;
-}
-
-export interface Wind {
-    speed: number;
-    deg: number;
-}
-
-export interface Sys {
-    pod: string;
-}
-
-export interface List {
-    dt: number;
-    main: Main;
-    weather: Weather;
-    clouds: Clouds;
-    wind: Wind;
-    sys: Sys;
-    dt_txt: string;
-}
-
-export interface Coord {
-    lat: number;
-    lon: number;
-}
-
-export interface City {
-    id: number;
-    name: string;
-    coord: Coord;
-    country: string;
-    timezone: number;
-    sunrise: number;
-    sunset: number;
+export interface FavoriteWeatherTypes {
+    list: Array<Forecast>;
 }
 
 export interface Forecast {
     cod: string;
     message: number;
     cnt: number;
-    list: List;
-    city: City;
+    list: Array<
+        {
+            dt: number;
+            main: {
+                temp: number;
+                temp_min: number;
+                temp_max: number;
+                pressure: number;
+                sea_level: number;
+                grnd_level: number;
+                humidity: number;
+                temp_kf: number;
+            };
+            weather: Array<
+                {
+                    id: number;
+                    main: string;
+                    description: string;
+                    icon: string;
+                }
+                >;
+            clouds: {
+                all: number;
+            };
+            wind: {
+                speed: number;
+                deg: number;
+            };
+            sys: {
+                pod: string;
+            };
+            dt_txt: string;
+        }
+        >;
+    city: {
+        id: number;
+        name: string;
+        coord: {
+            lat: number;
+            lon: number;
+        };
+        country: string;
+        timezone: number;
+        sunrise: number;
+        sunset: number;
+    };
+
+
 }
+

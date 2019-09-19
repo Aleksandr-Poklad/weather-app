@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router';
 import routes, { AppRoute } from './App.routes';
 import { v4 as uuid } from 'uuid';
 import styles from './App.styles';
+import { ProtectedRoute } from '../ProtectedRoute';
 
 class App extends React.PureComponent<WithStyles<typeof styles>> {
 
@@ -13,7 +14,7 @@ class App extends React.PureComponent<WithStyles<typeof styles>> {
                 <div className={classes.root}>
                     <Switch>
                         {
-                            routes.map((route: AppRoute) => <Route key={ uuid() } { ...route }/>)
+                            routes.map((route: AppRoute) => route.isProtected ? <ProtectedRoute key={ uuid() } { ...route } /> : <Route key={ uuid() } { ...route }/>)
                         }
                     </Switch>
                 </div>

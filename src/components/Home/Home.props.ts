@@ -1,10 +1,11 @@
-import { Forecast } from '../../models';
+import { Forecast, FavoriteWeatherTypes } from '../../models';
 
 export interface HomeProps {
 }
 
 export interface StateProps {
-    weather: Array<Forecast>;
+    weather: Forecast[];
+    // weather: FavoriteWeatherTypes[];
 }
 
 export interface DispatchProps {
