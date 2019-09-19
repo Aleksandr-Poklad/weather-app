@@ -1,6 +1,6 @@
-export interface FavoriteWeatherTypes {
-    list: Array<Forecast>;
-}
+// export interface Weather {
+//     list: Array<Forecast>;
+// }
 
 export interface Forecast {
     cod: string;

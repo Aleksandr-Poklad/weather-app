@@ -2,16 +2,17 @@ import * as React from 'react';
 
 import withStyles, { WithStyles } from 'react-jss';
 import styles from './CityItem.styles';
-import {FavoriteWeatherTypes, Forecast} from '../../models';
+import {Forecast} from '../../models';
 
 const iconUrl = process.env.REACT_APP_API_ICON_URL;
 
 interface Props {
     data: Forecast;
-    // data: FavoriteWeatherTypes;
 }
 
 const CityItem: React.FC<Props & WithStyles<typeof styles>> = ({classes, data}) => {
+    
+    console.log(data);
 
 
     return <div className={classes.root}>

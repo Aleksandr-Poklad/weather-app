@@ -19,26 +19,21 @@ class Home extends React.PureComponent<DispatchProps & StateProps & RouteCompone
     public render() {
         
         const {weather, classes } = this.props;
-        // if (weather.length === 0) {
-        //     return <div>Loading</div>;
-        // }
+
         return (
-            <Page title={ 'WEATHER|HOME' }>
-                <div className={classes.root}>
-                    {/*<Header />*/}
-                    {/*<CurrentCity />*/}
-                    <Grid data={ weather }/>
-                </div>
-            </Page>
+                <Page title={ 'WEATHER|HOME' }>
+                    <div className={classes.root}>
+                        {/*<Header />*/}
+                        {/*<CurrentCity />*/}
+                        <Grid data={ weather }/>
+                    </div>
+                </Page>
         );
 
 
     }
 
 }
-
-
-// const WrappedHome = withStyles(styles)(connect<StateProps, DispatchProps>(mapStateToProps, mapDespatchToProps)(Home));
 const WrappedHome = withStyles(styles)((Home));
 
 export {WrappedHome as HomeComponent};

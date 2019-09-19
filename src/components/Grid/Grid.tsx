@@ -3,7 +3,7 @@ import * as React from 'react';
 import withStyles, { WithStyles } from 'react-jss';
 import styles from './Grid.styles';
 import {ApiRequest} from "../../apis/ApiRequest";
-import {Forecast, FavoriteWeatherTypes} from "../../models";
+import {Forecast} from "../../models";
 import {CityItem} from "../CityItem";
 import {defaultCities} from '../../apis/DefaultCities';
 import uuid from 'uuid/v4';
@@ -62,10 +62,10 @@ class Grid extends React.PureComponent<Props & WithStyles<typeof styles>> {
 
     public render() {
         const {data, classes} = this.props;
-        if (!data) return <div>Loading</div>;
-        
-        // console.log(data);
+        // if (data.length === 0) return <div>Loading</div>;
 
+        console.log(data.length);
+        
         return (
             <div className={classes.root}>
 
