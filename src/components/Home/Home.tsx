@@ -33,7 +33,6 @@ class Home extends React.PureComponent<DispatchProps & StateProps & RouteCompone
             );
         });
 
-
         return (
                 <Page title={ 'WEATHER|HOME' }>
                     <div className={classes.root}>

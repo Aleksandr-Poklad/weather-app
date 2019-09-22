@@ -15,6 +15,9 @@ export default (appState: WeatherState = INITIAL_STATE, action: Action<Array<For
 	switch (action.type) {
 		case ACTION_TYPES.SET_LIST:
 			return {...appState, list: action.payload };
+		case ACTION_TYPES.DELETE_CITY:
+			const id = action.payload;
+			return {...appState, list: action.payload };
 		default:
 			return appState;
 	}

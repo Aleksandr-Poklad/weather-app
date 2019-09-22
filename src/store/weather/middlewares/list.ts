@@ -12,11 +12,6 @@ const fetchWorker = async (action: Action<undefined>, next, dispatch, getState) 
 	try {
 		const state = getState();
 
-
-
-		// const forecastItem = await ApiRequest.get<Array<Forecast>>(`forecast?id=${defaultCities[0].id}`);
-		// newArr.push(forecastItem);
-
 		let newArr = [];
 
 		let response = 'group?id=';

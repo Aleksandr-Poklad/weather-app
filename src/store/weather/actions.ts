@@ -9,3 +9,7 @@ export const setList = (list: Array<Forecast>) => ({
 export const fetchList = () => ({
 	type: ACTION_TYPES.FETCH_LIST,
 });
+
+export const deleteCity = () => ({
+	type: ACTION_TYPES.DELETE_CITY,
+});

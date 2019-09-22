@@ -8,7 +8,8 @@ export default (theme: Theme) => {
             backgroundColor: theme.palette.primary.main,
             margin: '0 15px 30px 15px',
             padding: 20,
-            borderRadius: 10
+            borderRadius: 10,
+            position: 'relative'
         },
         title: {
             display: 'flex',
@@ -26,6 +27,17 @@ export default (theme: Theme) => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between'
+        },
+        deleteBtn: {
+            position: 'absolute',
+            right: 10,
+            top: 10,
+            color: theme.palette.error.main,
+            fontWeight: 700,
+            cursor: 'pointer',
+            width: 15,
+            height: 15,
+            background: 'transparent'
         }
     };
 };
