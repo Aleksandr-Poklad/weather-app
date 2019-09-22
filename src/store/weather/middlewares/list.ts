@@ -19,14 +19,14 @@ const fetchWorker = async (action: Action<undefined>, next, dispatch, getState) 
 
 		let newArr = [];
 
-		const response = defaultCities.map(async (item) => {
-			const forecastItem = await ApiRequest.get<Array<Forecast>>(`forecast?id=${item.id}`);
-			newArr.push(forecastItem);
-			return newArr;
+		let response = 'group?id=';
+		defaultCities.map((item) => {
+			return response = response + item.id + ',';
 		});
-		console.log(newArr);
+		const responseAll = response.replace(/,$/, "");
+		const forecastItem = await ApiRequest.get<Array<Forecast>>(responseAll);
+		newArr.push(forecastItem);
 		dispatch(setList(newArr));
-
 
 	} catch (e) {
 		throw e;

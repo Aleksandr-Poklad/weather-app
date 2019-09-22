@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { ReactNode } from 'react';
 
 import withStyles, { WithStyles } from 'react-jss';
 import styles from './Grid.styles';
@@ -8,45 +9,41 @@ import {CityItem} from "../CityItem";
 import {defaultCities} from '../../apis/DefaultCities';
 import uuid from 'uuid/v4';
 
-// interface State {
-//     forecast: Array<Forecast>;
-//     defaultCities: any
+
+interface Props {
+    children: ReactNode;
+}
+
+// interface Props {
+//     data: Array<Forecast>;
 // }
 
-
-// class Grid extends React.PureComponent<WithStyles<typeof styles>, State> {
-//
-//     state = {
-//         forecast: null,
-//         defaultCities: []
-//     };
-//
-//     public componentWillMount = async () => {
-//         try {
-//             const forecast = defaultCities.map(async (item) => {
-//                 const forecastItem = await ApiRequest.get(`forecast?id=${item.id}`);
-//                 this.setState(({defaultCities}) => {
-//                     const newArr = [...defaultCities, forecastItem];
-//                     return {
-//                         defaultCities: newArr
-//                     }
-//                 });
-//             });
-//
-//         } catch (e) {
-//             throw e;
-//         }
-//     };
+// class Grid extends React.PureComponent<Props & WithStyles<typeof styles>> {
 //
 //     public render() {
-//         const weatherData = this.state.defaultCities;
-//         if (!weatherData) return <div>Loading</div>;
-//         const { classes } = this.props;
+//         const {data, classes} = this.props;
+//         if (data.length === 0) return <div>Loading</div>;
+//
+//         console.log(data.length);
+//         console.log(data);
 //         return (
 //             <div className={classes.root}>
-//                 {weatherData.map((item) => {
-//                     return <CityItem key={ uuid() } data={ item }/>
-//                 })}
+//
+//                 {/*<CityItem key={ uuid() } weather={ data }/>*/}
+//
+//                 {
+//                     data[0].list.map((item) => {
+//
+//                         return <CityItem key={ uuid() } data={ data }/>
+//                         {/*<div key={ uuid() }>*/}
+//                         {/*    {console.log(item)}*/}
+//                         {/*    <h2>*/}
+//                         {/*        {item.name}*/}
+//                         {/*        <span>({item.sys.country})</span>*/}
+//                         {/*    </h2>*/}
+//                         {/*</div>*/}
+//                     })
+//                 }
 //
 //             </div>
 //         );
@@ -54,36 +51,15 @@ import uuid from 'uuid/v4';
 //
 // }
 
-interface Props {
-    data: Array<Forecast>;
-}
 
-class Grid extends React.PureComponent<Props & WithStyles<typeof styles>> {
+const Grid: React.FC<Props & WithStyles<typeof styles>> = ({classes, children}) => {
 
-    public render() {
-        const {data, classes} = this.props;
-        // if (data.length === 0) return <div>Loading</div>;
+    const childrenWithProps  = React.Children.map(children, (child) => child);
 
-        console.log(data.length);
-        
-        return (
-            <div className={classes.root}>
-
-                {/*<CityItem key={ uuid() } weather={ data }/>*/}
-                
-                {
-                    data.map((item) => {
-                        console.log(item);
-                        return <CityItem key={ uuid() } data={ item }/>
-                    })
-                }
-
-            </div>
-        );
-    }
-
-}
-
+    return <div className={classes.root}>
+        {childrenWithProps }
+    </div>;
+};
 
 
 

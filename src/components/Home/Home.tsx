@@ -8,6 +8,8 @@ import {CurrentCity} from "../CurrentCity";
 import { Page } from '../Page';
 import {connect} from "react-redux";
 import { Header } from '../Header';
+import { CityItem } from '../CityItem';
+import { List } from '../../models';
 
 
 class Home extends React.PureComponent<DispatchProps & StateProps & RouteComponentProps & WithStyles<typeof styles>> {
@@ -17,15 +19,29 @@ class Home extends React.PureComponent<DispatchProps & StateProps & RouteCompone
     }
 
     public render() {
-        
+        let favoriteCitiesItem = null;
         const {weather, classes } = this.props;
+
+        if (weather.length === 0) return <div>Loading</div>;
+
+        favoriteCitiesItem = weather[0].list.map((items: List, i) => {
+            return (
+                    <CityItem
+                            key={i}
+                            data={items}
+                    />
+            );
+        });
+
 
         return (
                 <Page title={ 'WEATHER|HOME' }>
                     <div className={classes.root}>
                         {/*<Header />*/}
                         {/*<CurrentCity />*/}
-                        <Grid data={ weather }/>
+                        <Grid>
+                         {favoriteCitiesItem}
+                        </Grid>
                     </div>
                 </Page>
         );
