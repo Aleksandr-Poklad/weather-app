@@ -5,24 +5,27 @@ import { Forecast } from '../../../models';
 import { deleteCity } from '../actions';
 import { subscribe } from '../../../utils/redux';
 
-const fetchWorker = (action: Action<undefined>, next, dispatch, getState) => {
 
-	try {
-		const state = getState();
 
-		dispatch(deleteCity());
 
-	} catch (e) {
-		throw e;
-	}
+const fetchWorker = (id: any) => (action: Action<undefined>, next, dispatch, getState) => {
+
+	// const state = getState();
+	
+	console.log(id);
+
+	// const newList = state.splice(id, 1);
+	//
+	// dispatch(deleteCity(newList));
+
 	next(action);
 };
 
 
-const fetchMiddleware = ({ dispatch, getState }: any) => (next: (action: Action<any>) => void) => subscribe(
+const fetchMiddleware = ({ dispatch, getState, id }: any) => (next: (action: Action<any>) => void) => subscribe(
 	ACTION_TYPES.DELETE_CITY,
-	fetchWorker
+	fetchWorker(id)
 )(next, dispatch, getState);
 
 
-export const fetchMiddlewares = [ fetchMiddleware ];
+export const fetchMiddlewaresDel = [ fetchMiddleware ];

@@ -16,8 +16,8 @@ export default (appState: WeatherState = INITIAL_STATE, action: Action<Array<For
 		case ACTION_TYPES.SET_LIST:
 			return {...appState, list: action.payload };
 		case ACTION_TYPES.DELETE_CITY:
-			const id = action.payload;
-			return {...appState, list: action.payload };
+			const  id = action.payload;
+			// return appState.list.filter((el) => el !== id);
 		default:
 			return appState;
 	}

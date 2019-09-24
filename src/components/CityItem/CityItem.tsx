@@ -3,31 +3,24 @@ import * as React from 'react';
 import withStyles, { WithStyles } from 'react-jss';
 import styles from './CityItem.styles';
 import {Forecast, List} from '../../models';
-import {AppState} from "../../store";
-import {deleteCity, getWeather} from "../../store/weather";
-import {ThunkDispatch} from "redux-thunk";
-import {connect} from "react-redux";
 
 const iconUrl = process.env.REACT_APP_API_ICON_URL;
 
 interface Props {
     data: List;
+    id: number;
+    deleteCity: any;
 }
 
-interface StateProps {
-    weather: Array<Forecast>;
-}
-
-interface DispatchProps {
-    onDeleteCity: () => void;
-}
-
-const CityItem: React.FC<Props & WithStyles<typeof styles>> = ({classes, data}, deleteCity) => {
+const CityItem: React.FC<Props & WithStyles<typeof styles>> = ({classes, data, id, deleteCity}) => {
 
     return <div className={classes.root}>
 
         <div className={classes.deleteBtn}
-            // onClick={deleteCity}
+            onClick={() => {
+                // console.log(id);
+                // deleteCity.onDeleteCity(id);
+            }}
         >
             x
         </div>
@@ -49,19 +42,6 @@ const CityItem: React.FC<Props & WithStyles<typeof styles>> = ({classes, data}, 
     </div>;
 };
 
-const mapStateToProps = (state: AppState): StateProps => {
-    return {
-        weather: getWeather(state)
-    };
-};
-
-const mapDispatchToProps = {
-    // onDeleteCity: (id) => dispatch(deleteCity())
-    onDeleteCity: (id) => {
-        console.log(`delete ${id}`);
-    }
-};
-
-const WrappedCity = withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(CityItem));
+const WrappedCity = withStyles(styles)(CityItem);
 
 export {WrappedCity as CityItem};

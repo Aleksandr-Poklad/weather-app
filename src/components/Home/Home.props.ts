@@ -9,4 +9,5 @@ export interface StateProps {
 
 export interface DispatchProps {
     onFetchList: () => void;
+    onDeleteCity: (id: any) => void;
 }

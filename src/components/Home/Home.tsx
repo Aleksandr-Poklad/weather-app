@@ -10,6 +10,7 @@ import {connect} from "react-redux";
 import { Header } from '../Header';
 import { CityItem } from '../CityItem';
 import { List } from '../../models';
+import {deleteCity} from "../../store/weather";
 
 
 class Home extends React.PureComponent<DispatchProps & StateProps & RouteComponentProps & WithStyles<typeof styles>> {
@@ -28,7 +29,9 @@ class Home extends React.PureComponent<DispatchProps & StateProps & RouteCompone
             return (
                     <CityItem
                             key={i}
+                            id={i}
                             data={items}
+                            deleteCity={this.props}
                     />
             );
         });
