@@ -8,11 +8,9 @@ import { subscribe } from '../../../utils/redux';
 
 
 
-const fetchWorker = (id: any) => (action: Action<undefined>, next, dispatch, getState) => {
+const fetchWorker = (id: number) => (action: Action<undefined>, next, dispatch, getState) => {
 
 	// const state = getState();
-	
-	console.log(id);
 
 	// const newList = state.splice(id, 1);
 	//

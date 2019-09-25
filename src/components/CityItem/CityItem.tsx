@@ -8,18 +8,16 @@ const iconUrl = process.env.REACT_APP_API_ICON_URL;
 
 interface Props {
     data: List;
-    id: number;
     deleteCity: any;
 }
 
-const CityItem: React.FC<Props & WithStyles<typeof styles>> = ({classes, data, id, deleteCity}) => {
+const CityItem: React.FC<Props & WithStyles<typeof styles>> = ({classes, data, deleteCity}) => {
 
     return <div className={classes.root}>
 
         <div className={classes.deleteBtn}
             onClick={() => {
-                // console.log(id);
-                // deleteCity.onDeleteCity(id);
+                deleteCity.onDeleteCity(data.id);
             }}
         >
             x

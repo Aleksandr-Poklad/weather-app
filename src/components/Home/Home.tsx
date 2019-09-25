@@ -29,7 +29,6 @@ class Home extends React.PureComponent<DispatchProps & StateProps & RouteCompone
             return (
                     <CityItem
                             key={i}
-                            id={i}
                             data={items}
                             deleteCity={this.props}
                     />

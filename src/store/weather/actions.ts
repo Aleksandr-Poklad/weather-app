@@ -10,7 +10,7 @@ export const fetchList = () => ({
 	type: ACTION_TYPES.FETCH_LIST,
 });
 
-export const deleteCity = (id: any) => ({
+export const deleteCity = (id: number) => ({
 	type: ACTION_TYPES.DELETE_CITY,
 	payload: id
 });
