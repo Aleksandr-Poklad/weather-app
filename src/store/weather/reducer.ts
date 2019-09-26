@@ -17,19 +17,20 @@ export default (appState: WeatherState = INITIAL_STATE, action: Action<Array<For
 		case ACTION_TYPES.SET_LIST:
 			return {...appState, list: action.payload };
 		case ACTION_TYPES.DELETE_CITY:
+			const newArr = appState.list[0].list.slice();
 			const  id = action.payload;
 			let delElement;
-			appState.list[0].list.filter((el, i) => {
+			newArr.filter((el) => {
 				// @ts-ignore
 				if(el.id === id) {
-					return appState.list[0].list.indexOf(el);
+					return delElement = newArr.indexOf(el);
 				}
 			});
-			const newList = appState.list[0].list.splice(delElement, 1);
-			console.log(newList);
+			// @ts-ignore
+			newArr.splice(delElement, 1);
 			return {
 				...appState,
-				list: newList
+				list: newArr
 			};
 		default:
 			return appState;
