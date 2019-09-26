@@ -25,6 +25,7 @@ class Home extends React.PureComponent<DispatchProps & StateProps & RouteCompone
 
         if (weather.length === 0) return <div>Loading</div>;
 
+        console.log(weather);
         if (weather[0] !== undefined) {
             favoriteCitiesItem = weather[0].list.map((items: List, i) => {
                 return (

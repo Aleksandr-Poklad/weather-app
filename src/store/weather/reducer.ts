@@ -35,7 +35,7 @@ export default (appState: WeatherState = INITIAL_STATE, action: Action<Array<For
 
 			return {
 				...appState,
-				list: updateState
+				list: Array(updateState)
 			};
 		default:
 			return appState;
