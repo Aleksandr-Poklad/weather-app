@@ -28,9 +28,14 @@ export default (appState: WeatherState = INITIAL_STATE, action: Action<Array<For
 			});
 			// @ts-ignore
 			newArr.splice(delElement, 1);
+
+			const updateState = appState.list[0];
+			updateState.cnt--;
+			updateState.list = newArr;
+
 			return {
 				...appState,
-				list: newArr
+				list: updateState
 			};
 		default:
 			return appState;
