@@ -10,7 +10,7 @@ import {connect} from "react-redux";
 import { Header } from '../Header';
 import { CityItem } from '../CityItem';
 import { List } from '../../models';
-import {deleteCity} from "../../store/weather";
+import {Search} from "../Search";
 
 
 class Home extends React.PureComponent<DispatchProps & StateProps & RouteComponentProps & WithStyles<typeof styles>> {
@@ -25,7 +25,6 @@ class Home extends React.PureComponent<DispatchProps & StateProps & RouteCompone
 
         if (weather.length === 0) return <div>Loading</div>;
 
-        console.log(weather);
         if (weather[0] !== undefined) {
             favoriteCitiesItem = weather[0].list.map((items: List, i) => {
                 return (
@@ -43,6 +42,7 @@ class Home extends React.PureComponent<DispatchProps & StateProps & RouteCompone
                     <div className={classes.root}>
                         {/*<Header />*/}
                         {/*<CurrentCity />*/}
+                        <Search />
                         <Grid>
                          {favoriteCitiesItem}
                         </Grid>

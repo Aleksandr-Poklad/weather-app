@@ -32,12 +32,14 @@ export default (theme: Theme) => {
             position: 'absolute',
             right: 10,
             top: 10,
-            color: theme.palette.error.main,
             fontWeight: 700,
             cursor: 'pointer',
             width: 15,
             height: 15,
             background: 'transparent'
+        },
+        deleteBtnSvg: {
+            color: theme.palette.error.main,
         }
     };
 };

@@ -14,3 +14,8 @@ export const deleteCity = (id: number) => ({
 	type: ACTION_TYPES.DELETE_CITY,
 	payload: id
 });
+
+export const addCity = (cityName: string) => ({
+	type: ACTION_TYPES.ADD_CITY,
+	payload: cityName
+});
