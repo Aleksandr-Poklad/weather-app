@@ -4,8 +4,7 @@ import withStyles, { WithStyles } from 'react-jss';
 import styles from './Search.styles';
 
 interface SearchProps {
-    value: string;
-    onChange: (inputText: string) => void;
+    handleChange: any;
 }
 
 class Search extends React.PureComponent<SearchProps & WithStyles<typeof styles>> {
@@ -15,9 +14,7 @@ class Search extends React.PureComponent<SearchProps & WithStyles<typeof styles>
         event.preventDefault();
     };
 
-    onChange = (event: SyntheticEvent<HTMLInputElement>) => {
-        this.props.onChange(event.currentTarget.value);
-    };
+
 
     private searchCity(e) {
         e.preventDefault();
@@ -31,8 +28,7 @@ class Search extends React.PureComponent<SearchProps & WithStyles<typeof styles>
                 <input className={classes.input}
                     type="text"
                     placeholder='Enter city'
-                    value={this.props.value}
-                    onChange={this.onChange}
+                    onChange={handleChange}
                 />
                 <button className={classes.searchBtn}
                     onClick={this.searchCity}

@@ -11,6 +11,7 @@ import { Header } from '../Header';
 import { CityItem } from '../CityItem';
 import { List } from '../../models';
 import {Search} from "../Search";
+import { ChangeEvent } from 'react';
 
 
 class Home extends React.PureComponent<DispatchProps & StateProps & RouteComponentProps & WithStyles<typeof styles>> {
@@ -18,6 +19,10 @@ class Home extends React.PureComponent<DispatchProps & StateProps & RouteCompone
     public componentDidMount(): void {
         this.props.onFetchList();
     }
+
+    handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setCity(event.target.value);
+    };
 
     public render() {
         let favoriteCitiesItem = null;
@@ -42,7 +47,7 @@ class Home extends React.PureComponent<DispatchProps & StateProps & RouteCompone
                     <div className={classes.root}>
                         {/*<Header />*/}
                         {/*<CurrentCity />*/}
-                        <Search />
+                        <Search handleChange={}/>
                         <Grid>
                          {favoriteCitiesItem}
                         </Grid>
