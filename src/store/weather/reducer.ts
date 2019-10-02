@@ -7,7 +7,8 @@ export interface WeatherState {
 }
 
 const INITIAL_STATE = {
-	list: []
+	list: [],
+	value: ''
 };
 
 export default (appState: WeatherState = INITIAL_STATE, action: Action<Array<Forecast>>) => {
@@ -17,6 +18,9 @@ export default (appState: WeatherState = INITIAL_STATE, action: Action<Array<For
 
 		case ACTION_TYPES.ADD_CITY:
 			return {...appState, list: action.payload };
+
+		case ACTION_TYPES.SET_CITY:
+			return {...appState, value: action.payload};
 
 		case ACTION_TYPES.DELETE_CITY:
 			const newArr = appState.list[0].list.slice();

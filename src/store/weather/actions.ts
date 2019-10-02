@@ -15,7 +15,14 @@ export const deleteCity = (id: number) => ({
 	payload: id
 });
 
+export const setCity = (value: string) => ({
+	type: ACTION_TYPES.SET_CITY,
+	payload: value
+});
+
 export const addCity = (cityName: string) => ({
 	type: ACTION_TYPES.ADD_CITY,
 	payload: cityName
 });
+
+

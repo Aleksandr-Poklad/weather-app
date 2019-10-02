@@ -5,6 +5,8 @@ import styles from './Search.styles';
 
 interface SearchProps {
     handleChange: any;
+    value: string;
+    searchCity: any;
 }
 
 class Search extends React.PureComponent<SearchProps & WithStyles<typeof styles>> {
@@ -14,24 +16,19 @@ class Search extends React.PureComponent<SearchProps & WithStyles<typeof styles>
         event.preventDefault();
     };
 
-
-
-    private searchCity(e) {
-        e.preventDefault();
-    }
-
     public render() {
-        const {classes } = this.props;
+        const {classes, handleChange, value, searchCity } = this.props;
 
         return <div className={classes.root}>
             <form onClick={this.submitForm}>
                 <input className={classes.input}
                     type="text"
                     placeholder='Enter city'
+                    value={value}
                     onChange={handleChange}
                 />
                 <button className={classes.searchBtn}
-                    onClick={this.searchCity}
+                    onClick={searchCity}
                 >
                     Search
                 </button>
@@ -39,6 +36,8 @@ class Search extends React.PureComponent<SearchProps & WithStyles<typeof styles>
             </form>
         </div>;
     }
+
+
 }
 
 const WrappedCity = withStyles(styles)(Search);
