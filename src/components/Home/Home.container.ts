@@ -2,13 +2,12 @@ import { connect } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { AppState } from '../../store';
 import { HomeComponent } from './Home';
-import { getWeather, fetchList, deleteCity, addCity, setCity, getValue} from '../../store/weather';
+import { getWeather, fetchList, deleteCity, addCity, setCity} from '../../store/weather';
 import { DispatchProps, HomeProps, StateProps } from './Home.props';
 
 const mapStateToProps = (state: AppState): StateProps => {
     return {
-        weather: getWeather(state),
-        value: getValue(state)
+        weather: getWeather(state)
     };
 };
 

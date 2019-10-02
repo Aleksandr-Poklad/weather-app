@@ -4,7 +4,7 @@ import { ACTION_TYPES } from '../actionTypes';
 import { ApiRequest } from '../../../apis/ApiRequest';
 import {defaultCities} from '../../../apis/DefaultCities';
 import { Forecast } from '../../../models';
-import { addCity } from '../actions';
+import { addCity, setCity } from '../actions';
 import { subscribe } from '../../../utils/redux';
 
 const fetchWorker = async (action: Action<undefined>, next, dispatch, getState) => {
@@ -12,12 +12,14 @@ const fetchWorker = async (action: Action<undefined>, next, dispatch, getState) 
     try {
 
         const state = getState();
-        // console.log(state.weather.value);
+        // state.weather.value;
+
+        console.log(state.weather.value);
         // let newArr = [];
         //
         // const forecastItem = await ApiRequest.get<Array<Forecast>>(`group?id=${cityName}`);
         // newArr.push(forecastItem);
-        // dispatch(adddCity(newArr));
+        // dispatch(setCity(state.weather.value));
 
     } catch (e) {
         throw e;

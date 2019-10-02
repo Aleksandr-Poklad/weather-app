@@ -4,6 +4,7 @@ import { Forecast } from '../../models';
 
 export interface WeatherState {
 	list: Array<Forecast>;
+	value: string;
 }
 
 const INITIAL_STATE = {
