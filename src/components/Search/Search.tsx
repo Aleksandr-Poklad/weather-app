@@ -6,6 +6,7 @@ import styles from './Search.styles';
 interface SearchProps {
     handleChange: any;
     searchCity: any;
+    value: string;
 }
 
 class Search extends React.PureComponent<SearchProps & WithStyles<typeof styles>> {
@@ -15,8 +16,9 @@ class Search extends React.PureComponent<SearchProps & WithStyles<typeof styles>
         event.preventDefault();
     };
 
+
     public render() {
-        const {classes, handleChange, searchCity } = this.props;
+        const {classes, handleChange, searchCity} = this.props;
 
         return <div className={classes.root}>
             <form onClick={this.submitForm}>

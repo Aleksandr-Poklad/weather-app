@@ -4,21 +4,21 @@ import { ACTION_TYPES } from '../actionTypes';
 import { ApiRequest } from '../../../apis/ApiRequest';
 import {defaultCities} from '../../../apis/DefaultCities';
 import { Forecast } from '../../../models';
-import { addCity, setCity } from '../actions';
+import {addCity, fetchNewCity, setCity} from '../actions';
 import { subscribe } from '../../../utils/redux';
 
 const fetchWorker = async (action: Action<undefined>, next, dispatch, getState) => {
 
     try {
 
-        // const state = getState();
-        // state.weather.value;
+        const state = getState();
+        // console.log(state.weather.value);
+        let newArr = [];
 
-        // let newArr = [];
-        //
-        // const forecastItem = await ApiRequest.get<Array<Forecast>>(`group?id=${cityName}`);
-        // newArr.push(forecastItem);
-        // dispatch(setCity(state.weather.value));
+        const forecastItem = await ApiRequest.get<Array<Forecast>>(`weather?q=${state.weather.value}`);
+        // console.log(forecastItem);
+        newArr.push(forecastItem);
+        dispatch(fetchNewCity(newArr));
 
     } catch (e) {
         throw e;
@@ -28,9 +28,9 @@ const fetchWorker = async (action: Action<undefined>, next, dispatch, getState) 
 
 
 const fetchMiddleware = ({ dispatch, getState }: any) => (next: (action: Action<any>) => void) => subscribe(
-    ACTION_TYPES.SET_CITY,
+    ACTION_TYPES.FETCH_NEW_CITY,
     fetchWorker
 )(next, dispatch, getState);
 
 
-export const fetchMiddlewaresSetCity = [ fetchMiddleware ];
+export const fetchMiddlewaresFetchNewCity = [ fetchMiddleware ];

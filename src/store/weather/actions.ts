@@ -20,6 +20,11 @@ export const setCity = (value: string) => ({
 	payload: value
 });
 
+export const fetchNewCity = (list: any) => ({
+	type: ACTION_TYPES.FETCH_NEW_CITY,
+	payload: list
+});
+
 export const addCity = (cityName: string) => ({
 	type: ACTION_TYPES.ADD_CITY,
 	payload: cityName

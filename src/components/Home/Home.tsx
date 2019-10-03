@@ -24,6 +24,11 @@ class Home extends React.PureComponent<DispatchProps & StateProps & RouteCompone
         this.props.onSetCity(event.target.value);
     };
 
+    public searchCity = (e) => {
+        e.preventDefault();
+        this.props.onFetchNewCity(this.props.weather);
+    };
+
     // public searchCity(e) {
     //     e.preventDefault();
     //     if(this.props !== undefined) {
@@ -33,7 +38,7 @@ class Home extends React.PureComponent<DispatchProps & StateProps & RouteCompone
 
     public render() {
         let favoriteCitiesItem = null;
-        const {weather, classes} = this.props;
+        const {weather, classes, value} = this.props;
 
         if (weather.length === 0) return <div>Loading</div>;
 
@@ -49,19 +54,12 @@ class Home extends React.PureComponent<DispatchProps & StateProps & RouteCompone
             });
         }
 
-        const searchCity = (e) => {
-            e.preventDefault();
-            console.log(this.props);
-        };
-        
-        console.log(this.props);
-
         return (
                 <Page title={ 'WEATHER|HOME' }>
                     <div className={classes.root}>
                         {/*<Header />*/}
                         {/*<CurrentCity />*/}
-                        <Search searchCity={searchCity}  handleChange={this.handleChange}/>
+                        <Search value={value} searchCity={this.searchCity}  handleChange={this.handleChange}/>
                         <Grid>
                          {favoriteCitiesItem}
                         </Grid>
