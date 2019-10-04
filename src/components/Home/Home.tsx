@@ -26,15 +26,8 @@ class Home extends React.PureComponent<DispatchProps & StateProps & RouteCompone
 
     public searchCity = (e) => {
         e.preventDefault();
-        this.props.onFetchNewCity(this.props.weather);
+        this.props.onFetchNewCity(this.props);
     };
-
-    // public searchCity(e) {
-    //     e.preventDefault();
-    //     if(this.props !== undefined) {
-    //         console.log(this.props);
-    //     }
-    // }
 
     public render() {
         let favoriteCitiesItem = null;
