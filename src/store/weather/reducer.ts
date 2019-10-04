@@ -23,9 +23,40 @@ export default (appState: WeatherState = INITIAL_STATE, action: Action<Array<For
 		case ACTION_TYPES.SET_CITY:
 			return {...appState, value: action.payload};
 
-		case ACTION_TYPES.FETCH_NEW_CITY:
-			console.log(action.payload);
-			return {...appState, list: action.payload };
+		case ACTION_TYPES.GET_NEW_CITY:
+			const newArr2 = appState.list[0].list.slice();
+			let addElement;
+
+			try {
+
+				newArr2.filter((el) => {
+					if(el.name.toLocaleLowerCase() === appState.value.toLocaleLowerCase()) {
+						return addElement = action.payload;
+					}
+				});
+
+			} catch {
+
+			}
+
+
+			if(addElement !== undefined) {
+				console.log('new');
+				// @ts-ignore
+				newArr2.push(addElement);
+				const updateState2 = appState.list[0];
+				updateState2.cnt++;
+				updateState2.list = newArr2;
+
+				return {
+					...appState,
+					list: Array(updateState2)
+				};
+			} else {
+				console.log('old');
+				return appState;
+			}
+
 
 		case ACTION_TYPES.DELETE_CITY:
 			const newArr = appState.list[0].list.slice();

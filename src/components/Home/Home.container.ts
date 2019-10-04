@@ -17,7 +17,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<any, any, any>) => ({
     onDeleteCity: (id: number) => dispatch(deleteCity(id)),
     onAddCity: (cityName: string) => dispatch(addCity(cityName)),
     onSetCity: (value: string) => dispatch(setCity(value)),
-    onFetchNewCity: (state: any) => dispatch(fetchNewCity(state))
+    onFetchNewCity: () => dispatch(fetchNewCity())
 });
 
 const ConnectedComponent = connect<StateProps, DispatchProps, HomeProps>(mapStateToProps, mapDispatchToProps)(HomeComponent);

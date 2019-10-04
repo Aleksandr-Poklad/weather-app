@@ -13,5 +13,5 @@ export interface DispatchProps {
     onFetchList: () => void;
     onDeleteCity: (id: number) => void;
     onSetCity: (value: string) => void;
-    onFetchNewCity: (state: any) => void;
+    onFetchNewCity: () => void;
 }
