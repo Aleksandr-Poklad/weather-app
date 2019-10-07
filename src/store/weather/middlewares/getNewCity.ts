@@ -1,9 +1,9 @@
-import { Store } from 'redux';
+// import { Store } from 'redux';
 import { Action } from '../../types';
 import { ACTION_TYPES } from '../actionTypes';
 import { ApiRequest } from '../../../apis/ApiRequest';
 import { Forecast } from '../../../models';
-import {addCity, getNewCity, setCity} from '../actions';
+import {getNewCity} from '../actions';
 import { subscribe } from '../../../utils/redux';
 
 const fetchWorker = async (action: Action<undefined>, next, dispatch, getState) => {
@@ -15,7 +15,9 @@ const fetchWorker = async (action: Action<undefined>, next, dispatch, getState) 
         dispatch(getNewCity(forecastItem));
 
     } catch (e) {
-        throw e;
+        // throw e
+        console.log(e);
+        alert('City ​​name is entered incorrectly!')
     }
     next(action);
 };

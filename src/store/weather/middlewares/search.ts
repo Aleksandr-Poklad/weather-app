@@ -1,15 +1,15 @@
-import { Store } from 'redux';
+// import { Store } from 'redux';
 import { Action } from '../../types';
 import { ACTION_TYPES } from '../actionTypes';
-import { ApiRequest } from '../../../apis/ApiRequest';
-import { Forecast } from '../../../models';
-import { addCity } from '../actions';
+// import { ApiRequest } from '../../../apis/ApiRequest';
+// import { Forecast } from '../../../models';
+// import { addCity } from '../actions';
 import { subscribe } from '../../../utils/redux';
 
 const fetchWorker = async (action: Action<undefined>, next, dispatch, getState) => {
 
     try {
-        const state = getState();
+        // const state = getState();
         // let newArr = [];
         //
         // const forecastItem = await ApiRequest.get<Array<Forecast>>(`group?id=${cityName}`);

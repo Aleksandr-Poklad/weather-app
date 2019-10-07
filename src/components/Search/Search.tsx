@@ -21,7 +21,7 @@ class Search extends React.PureComponent<SearchProps & WithStyles<typeof styles>
         const {classes, handleChange, searchCity} = this.props;
 
         return <div className={classes.root}>
-            <form onClick={this.submitForm}>
+            <form className={classes.form} onClick={this.submitForm}>
                 <input className={classes.input}
                     type="text"
                     placeholder='Enter city'
