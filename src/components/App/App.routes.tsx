@@ -3,6 +3,7 @@ import { Redirect, RouteComponentProps } from 'react-router';
 import { Home } from '../Home';
 import * as React from 'react';
 import { NotFound } from '../NotFound';
+import { CityItem } from '../CityItem';
 
 
 export interface AppRoute {
@@ -19,6 +20,10 @@ export default [
 		exact: true,
 		isProtected: true
 	},
+	// {
+	// 	path: PATHES.CITY,
+	// 	render: (props: RouteComponentProps) => <CityItem { ...props }/>
+	// },
 	{
 		path: PATHES.NOT_FOUND,
 		render: (props: RouteComponentProps) => <NotFound { ...props }/>

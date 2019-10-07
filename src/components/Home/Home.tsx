@@ -59,8 +59,6 @@ class Home extends React.PureComponent<DispatchProps & StateProps & RouteCompone
                     </div>
                 </Page>
         );
-
-
     }
 
 }

@@ -1,3 +1,4 @@
+
 import { ACTION_TYPES } from './actionTypes';
 import { Action } from '../types';
 import { Forecast } from '../../models';
@@ -10,6 +11,38 @@ export interface WeatherState {
 const INITIAL_STATE = {
 	list: [],
 	value: ''
+};
+
+const scrollTo = (to, duration) => {
+	const element = document.scrollingElement || document.documentElement,
+		start = element.scrollTop,
+		change = to - start,
+		startDate = +new Date();
+	// t = current time, b = start value, c = change in value, d = duration
+	let easeInOutQuad = function(t, b, c, d) {
+			t /= d/2;
+			if (t < 1) return c/2*t*t + b;
+			t--;
+			return -c/2 * (t*(t-2) - 1) + b;
+		},
+		animateScroll = function() {
+			const currentDate = +new Date();
+			const currentTime = currentDate - startDate;
+			element.scrollTop = parseInt(easeInOutQuad(currentTime, start, change, duration));
+			if(currentTime < duration) {
+				window.requestAnimationFrame(animateScroll);
+			}
+			else {
+				element.scrollTop = to;
+			}
+		};
+	animateScroll();
+};
+
+const offset = (el) => {
+	let rect = el.getBoundingClientRect(),
+		scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+	return {top: rect.top + scrollTop}
 };
 
 export default (appState: WeatherState = INITIAL_STATE, action: Action<Array<Forecast>>) => {
@@ -26,34 +59,22 @@ export default (appState: WeatherState = INITIAL_STATE, action: Action<Array<For
 		case ACTION_TYPES.GET_NEW_CITY:
 			const newArr2 = appState.list[0].list.slice();
 
-			// newArr2.map((el) => {
-			// 	if(el.name.toLocaleLowerCase() !== appState.value.toLocaleLowerCase()) {
-			// 		console.log('nooo');
-			// 		return addElement = action.payload;
-			// 	}
-			// 	return addElement;
-			// });
-
 			// @ts-ignore
 			let addElem = newArr2.find((el) => {
-					if(el.name.toLocaleLowerCase() === appState.value.toLocaleLowerCase()) {
-						return true;
-					} else {
-						return false;
-					}
-				});
-
-
-			console.log(addElem);
+				if(el.name.toLocaleLowerCase() === appState.value.toLocaleLowerCase()) {
+					return true;
+				} else {
+					return false;
+				}
+			});
 
 			if(!addElem) {
 				console.log('new');
 				// @ts-ignore
-				newArr2.push(action.payload);
+				newArr2.unshift(action.payload);
 				const updateState2 = appState.list[0];
 				updateState2.cnt++;
 				updateState2.list = newArr2;
-
 				return {
 					...appState,
 					list: Array(updateState2)
