@@ -36,15 +36,31 @@ class Home extends React.PureComponent<DispatchProps & StateProps & RouteCompone
         if (weather.length === 0) return <div>Loading</div>;
 
         if (weather[0] !== undefined) {
-            favoriteCitiesItem = weather[0].list.map((items: List, i) => {
-                return (
-                    <CityItem
-                        key={i}
-                        data={items}
-                        deleteCity={this.props}
-                    />
-                );
-            });
+            const cachedData = localStorage.getItem('__weatherData__');
+            const cachedWeather =  JSON.parse(cachedData);
+
+            if(cachedData) {
+                favoriteCitiesItem = cachedWeather[0].list.map((items: List, i) => {
+                    return (
+                        <CityItem
+                            key={i}
+                            data={items}
+                            deleteCity={this.props}
+                        />
+                    );
+                });
+            } else {
+                favoriteCitiesItem = weather[0].list.map((items: List, i) => {
+                    return (
+                        <CityItem
+                            key={i}
+                            data={items}
+                            deleteCity={this.props}
+                        />
+                    );
+                });
+            }
+
         }
 
         return (

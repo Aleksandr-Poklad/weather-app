@@ -21,6 +21,10 @@ const fetchWorker = async (action: Action<undefined>, next, dispatch, getState) 
 		const responseAll = response.replace(/,$/, "");
 		const forecastItem = await ApiRequest.get<Array<Forecast>>(responseAll);
 		newArr.push(forecastItem);
+
+		// @ts-ignore
+		// localStorage.setItem('__weatherData__', JSON.stringify(newArr));
+
 		dispatch(setList(newArr));
 
 	} catch (e) {

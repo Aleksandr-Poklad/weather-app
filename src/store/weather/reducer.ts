@@ -13,36 +13,8 @@ const INITIAL_STATE = {
 	value: ''
 };
 
-const scrollTo = (to, duration) => {
-	const element = document.scrollingElement || document.documentElement,
-		start = element.scrollTop,
-		change = to - start,
-		startDate = +new Date();
-	// t = current time, b = start value, c = change in value, d = duration
-	let easeInOutQuad = function(t, b, c, d) {
-			t /= d/2;
-			if (t < 1) return c/2*t*t + b;
-			t--;
-			return -c/2 * (t*(t-2) - 1) + b;
-		},
-		animateScroll = function() {
-			const currentDate = +new Date();
-			const currentTime = currentDate - startDate;
-			element.scrollTop = parseInt(easeInOutQuad(currentTime, start, change, duration));
-			if(currentTime < duration) {
-				window.requestAnimationFrame(animateScroll);
-			}
-			else {
-				element.scrollTop = to;
-			}
-		};
-	animateScroll();
-};
-
-const offset = (el) => {
-	let rect = el.getBoundingClientRect(),
-		scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-	return {top: rect.top + scrollTop}
+const updateLocalStorage = (newData) => {
+	localStorage.setItem('__weatherData__', JSON.stringify(newData));
 };
 
 export default (appState: WeatherState = INITIAL_STATE, action: Action<Array<Forecast>>) => {
@@ -57,7 +29,15 @@ export default (appState: WeatherState = INITIAL_STATE, action: Action<Array<For
 			return {...appState, value: action.payload};
 
 		case ACTION_TYPES.GET_NEW_CITY:
-			const newArr2 = appState.list[0].list.slice();
+			let newArr2;
+			const cachedData2 = localStorage.getItem('__weatherData__');
+			const cachedWeather2 =  JSON.parse(cachedData2);
+
+			if(cachedData2) {
+				newArr2 = cachedWeather2[0].list;
+			} else {
+				newArr2 = appState.list[0].list.slice();
+			}
 
 			// @ts-ignore
 			let addElem = newArr2.find((el) => {
@@ -75,6 +55,7 @@ export default (appState: WeatherState = INITIAL_STATE, action: Action<Array<For
 				const updateState2 = appState.list[0];
 				updateState2.cnt++;
 				updateState2.list = newArr2;
+				updateLocalStorage(Array(updateState2));
 				return {
 					...appState,
 					list: Array(updateState2)
@@ -84,23 +65,43 @@ export default (appState: WeatherState = INITIAL_STATE, action: Action<Array<For
 				return appState;
 			}
 
-
 		case ACTION_TYPES.DELETE_CITY:
-			const newArr = appState.list[0].list.slice();
-			const  id = action.payload;
-			let delElement;
-			newArr.filter((el) => {
-				// @ts-ignore
-				if(el.id === id) {
-					return delElement = newArr.indexOf(el);
-				}
-			});
-			// @ts-ignore
-			newArr.splice(delElement, 1);
 
-			const updateState = appState.list[0];
-			updateState.cnt--;
-			updateState.list = newArr;
+			let newArr, updateState;
+			const cachedData = localStorage.getItem('__weatherData__');
+			const cachedWeather =  JSON.parse(cachedData);
+			if(cachedData) {
+				newArr = cachedWeather[0].list;
+				const  id = action.payload;
+				let delElement;
+				newArr.filter((el) => {
+					// @ts-ignore
+					if(el.id === id) {
+						return delElement = newArr.indexOf(el);
+					}
+				});
+				// @ts-ignore
+				newArr.splice(delElement, 1);
+				updateState = cachedWeather[0];
+				updateState.cnt--;
+				updateState.list = newArr;
+			} else {
+				newArr = appState.list[0].list.slice();
+				const  id = action.payload;
+				let delElement;
+				newArr.filter((el) => {
+					// @ts-ignore
+					if(el.id === id) {
+						return delElement = newArr.indexOf(el);
+					}
+				});
+				// @ts-ignore
+				newArr.splice(delElement, 1);
+				updateState = appState.list[0];
+				updateState.cnt--;
+				updateState.list = newArr;
+			}
+			updateLocalStorage(Array(updateState));
 
 			return {
 				...appState,
