@@ -12,18 +12,18 @@ const iconUrl = process.env.REACT_APP_API_ICON_URL;
 class DetailedWeather extends React.PureComponent<DispatchProps & StateProps & DetailedWeatherProps & RouteComponentProps & WithStyles<typeof styles>> {
 
     componentDidMount() {
+        // this.props.onFetchList();
         const id = this.props.match!.params.id;
         this.props.onGetCityOne(id);
     }
 
     public render() {
         const {weather, classes} = this.props;
+
         
         if (weather[0].list.length > 1) return <div>Loading</div>;
         
         const data = weather[0].list[0];
-        
-        console.log(data);
 
         return (
                 <Page title={ 'WEATHER|CITY' }>

@@ -13,7 +13,7 @@ const mapStateToProps = (state: AppState): StateProps => {
 };
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<any, any, any>) => ({
-    // onFetchList: () => dispatch(fetchList()),
+    onFetchList: () => dispatch(fetchList()),
     onGetCityOne: (id: string) => dispatch(getCityOne(id)),
 });
 

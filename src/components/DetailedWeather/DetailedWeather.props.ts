@@ -11,6 +11,6 @@ export interface StateProps {
 }
 
 export interface DispatchProps {
-    // onFetchList: () => void;
+    onFetchList: () => void;
     onGetCityOne: (id: string) => void;
 }
